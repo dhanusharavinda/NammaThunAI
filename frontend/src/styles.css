@@ -1,0 +1,388 @@
+/* WhatsApp-like calm dark theme (elderly-friendly) */
+:root {
+  --bg: #0b141a;
+  --panel: #111b21;
+  --text: #e9edef;
+  --muted: rgba(233, 237, 239, 0.68);
+  --accent: #00a884;
+  --danger: #ff5c6a;
+
+  --bubble-user: #005c4b;
+  --bubble-bot: #202c33;
+
+  --hairline: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* WhatsApp-style app frame */
+.wa {
+  height: 100dvh;
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.waHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--panel);
+  border-bottom: 1px solid var(--hairline);
+  padding: 14px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.waHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.waTitle {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.waAI {
+  color: var(--accent);
+  font-weight: 950;
+  letter-spacing: 0.3px;
+}
+
+.waSubtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.waAboutBtn {
+  margin-top: 6px;
+  width: fit-content;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(233, 237, 239, 0.9);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.waAboutBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.waLang {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 10px 10px;
+}
+
+.waIconBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.waIconBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waIconBtn.danger {
+  background: rgba(255, 92, 106, 0.18);
+  border-color: rgba(255, 92, 106, 0.28);
+}
+
+.waChat {
+  padding: 14px 12px;
+  overflow: auto;
+  flex: 1;
+}
+
+.waEmpty {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 16px 8px;
+}
+
+.waRow {
+  display: flex;
+  margin: 10px 0;
+}
+
+.waRow.user {
+  justify-content: flex-end;
+}
+
+.waRow.assistant {
+  justify-content: flex-start;
+}
+
+.waBubble {
+  max-width: 92%;
+  border-radius: 18px;
+  padding: 12px 12px;
+  line-height: 1.55;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.waBubble.user {
+  background: var(--bubble-user);
+}
+
+.waBubble.assistant {
+  background: var(--bubble-bot);
+}
+
+.waMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.waName {
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(233, 237, 239, 0.72);
+}
+
+.waPill {
+  font-size: 12px;
+  font-weight: 900;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+}
+
+.waPill.high {
+  border-color: rgba(255, 92, 106, 0.35);
+  background: rgba(255, 92, 106, 0.12);
+}
+
+.waPill.medium {
+  border-color: rgba(255, 184, 77, 0.35);
+  background: rgba(255, 184, 77, 0.12);
+}
+
+.waPill.low {
+  border-color: rgba(0, 168, 132, 0.35);
+  background: rgba(0, 168, 132, 0.12);
+}
+
+.waLinkBtn {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: rgba(233, 237, 239, 0.9);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 10px;
+}
+
+.waLinkBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waText {
+  white-space: pre-wrap;
+}
+
+.waStatus {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 8px 0;
+}
+
+.waError {
+  margin-top: 10px;
+  background: rgba(255, 92, 106, 0.12);
+  border: 1px solid rgba(255, 92, 106, 0.24);
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.waInputBar {
+  position: sticky;
+  bottom: 0;
+  background: var(--panel);
+  border-top: 1px solid var(--hairline);
+  padding: 10px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.waInput {
+  flex: 1;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 14px;
+  outline: none;
+  min-width: 0;
+}
+
+.waInput::placeholder {
+  color: rgba(233, 237, 239, 0.55);
+  font-weight: 700;
+}
+
+.waSendBtn {
+  height: 48px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--accent);
+  color: #072019;
+  font-weight: 900;
+  font-size: 16px;
+  padding: 0 18px;
+  cursor: pointer;
+}
+
+.waSendBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 50;
+}
+
+.waModal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.waModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.waModalTitle {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.waModalBody {
+  padding: 14px 14px 16px;
+}
+
+.waModalLead {
+  font-size: 14px;
+  font-weight: 900;
+  color: rgba(233, 237, 239, 0.9);
+  margin-bottom: 10px;
+}
+
+.waModalText {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: rgba(233, 237, 239, 0.86);
+}
+
+@media (max-width: 720px) {
+  .wa {
+    max-width: 100%;
+  }
+  .waChat {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .waHeader {
+    padding: 12px 10px;
+  }
+  .waSubtitle {
+    display: none;
+  }
+  .waLang {
+    padding: 8px 8px;
+  }
+  .waIconBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  .waInputBar {
+    gap: 8px;
+    padding: 10px 8px;
+  }
+  .waSendBtn {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+}
+
