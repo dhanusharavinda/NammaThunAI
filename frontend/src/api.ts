@@ -15,7 +15,8 @@ export type ExplainResponse = {
   tts_mime_type?: string | null;
 };
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:8000";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL as string;
+
 
 async function safeJson(res: Response) {
   const text = await res.text();
