@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,9 +11,14 @@ _ENV_PATH = _BACKEND_DIR / ".env"
 
 class Settings(BaseSettings):
     # Load backend/.env regardless of current working directory.
-    model_config = SettingsConfigDict(env_file=str(_ENV_PATH), env_file_encoding="utf-8")
+    # In deployments (e.g. Render), the .env file may not exist; rely on real env vars then.
+    model_config = SettingsConfigDict(
+        env_file=str(_ENV_PATH) if _ENV_PATH.exists() else None,
+        env_file_encoding="utf-8",
+    )
 
-    openai_api_key: str
+    # Render environment variable name:
+    openai_api_key: str = Field(validation_alias="OPENAI_API_KEY")
     openai_chat_model: str = "gpt-4o"
     openai_stt_model: str = "whisper-1"
     openai_tts_model: str = "tts-1"
