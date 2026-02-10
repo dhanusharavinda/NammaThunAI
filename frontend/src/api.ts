@@ -15,7 +15,9 @@ export type ExplainResponse = {
   tts_mime_type?: string | null;
 };
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL as string;
+// Must be domain only (no `/api` suffix). Keep it clean and add `/api` in code.
+const BACKEND_URL = (import.meta.env.VITE_BACKEND_URL as string).replace(/\/+$/, "");
+const API_BASE_URL = `${BACKEND_URL}/api`;
 
 
 async function safeJson(res: Response) {
@@ -28,7 +30,7 @@ async function safeJson(res: Response) {
 }
 
 export async function explainMessage(text: string, language_preference: LanguagePreference) {
-  const res = await fetch(`${BASE_URL}/api/explain-message`, {
+  const res = await fetch(`${API_BASE_URL}/explain-message`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text, language_preference })
@@ -53,7 +55,7 @@ export async function voiceInput(
   // (Kept optional for backward compatibility.)
   if (context_text) form.append("context_text", context_text);
   if (history) form.append("history", history);
-  const res = await fetch(`${BASE_URL}/api/voice-input`, { method: "POST", body: form });
+  const res = await fetch(`${API_BASE_URL}/voice-input`, { method: "POST", body: form });
   if (!res.ok) throw await safeJson(res);
   return (await res.json()) as ExplainResponse;
 }
@@ -62,7 +64,7 @@ export async function fileUpload(file: File, language_preference: LanguagePrefer
   const form = new FormData();
   form.append("file", file);
   form.append("language_preference", language_preference);
-  const res = await fetch(`${BASE_URL}/api/file-upload`, { method: "POST", body: form });
+  const res = await fetch(`${API_BASE_URL}/file-upload`, { method: "POST", body: form });
   if (!res.ok) throw await safeJson(res);
   return (await res.json()) as ExplainResponse;
 }
